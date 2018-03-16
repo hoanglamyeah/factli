@@ -27,7 +27,7 @@ DEBUG = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['factaz.com']
 
 # Application definition
 
@@ -107,7 +107,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'factaz',
-        'USER': 'lam',
+        'USER': 'comficker',
         'PASSWORD': 'hoanganhlamno1',
         'HOST': 'localhost',
         'PORT': '5432',

@@ -1,0 +1,68 @@
+{% extends "layout/base.html" %}{% load custom_tags %}
+{% block breadcrumb %}
+    <li><a href="/">Home</a></li>
+    <li>
+        <span class="show-for-sr">Current: </span> {{ object.title }}
+    </li>
+{% endblock %}
+{% load i18n %}
+{% block title %}{{ object.title }}{% endblock %}
+{% block description %}{{ object.title }}{% endblock %}
+{% block content_header %}{{ object.title }}{% endblock %}
+{% block content %}
+    <div class="neat-article-container">
+        <div class="row neat-article-content">
+            <div class="small-10 large-8 columns" id="sticky1">
+                <div class="article-content">
+                    <div class="grid-x grid-padding-x small-up-1">
+                        <div class="cell large-12 text-center filter">
+                            <a class="button small secondary" href="?filter=all">ALL</a>
+                            <a class="button small" href="?filter=system">FACTAZ</a>
+                            <a class="button small" href="?filter=member">MEMBER</a>
+                        </div>
+                        <p class="cell">{{ object.description }}</p>
+                    </div>
+                    <div class="grid grid-x grid-padding-x small-up-1 medium-up-3">
+                        <div class="grid-item cell">
+                            <div class="callout">
+                                <div class="fact-body">
+                                    <img class="article-image" src="{% get_image_safe object.image "222x222" %}"
+                                         alt="{{ object.title }}">
+                                </div>
+                            </div>
+                        </div>{% for fact in facts %}
+                        <div class="grid-item cell">
+                            <div class="callout">
+                                <div class="fact-head grid-x">
+                                    <div class="fact-title row">
+                                        <h3>
+                                            <a href="/{{ object.slug }}/{{ forloop.counter }}">#Fact {{ forloop.counter }}</a>
+                                        </h3>
+                                    </div>
+                                    <div class="verify row">
+                                        <button data-tooltip aria-haspopup="true" class="has-tip"
+                                                data-disable-hover="false" tabindex="1"
+                                                title="{% verify_message fact.confirm request.user %}"
+                                                data-position="top"
+                                                data-alignment="center">
+                                            <i class="fa fa-check-circle {% verify_check fact.confirm %}"
+                                               aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="fact-body">{{ fact.content }}</div>
+                                <div class="fact-footer">
+                                    <button><i class="fa fa-facebook" aria-hidden="true"></i></button>
+                                    <button><i class="fa fa-twitter" aria-hidden="true"></i></button>
+                                    <button><i class="fa fa-reddit" aria-hidden="true"></i></button>
+                                    <button><i class="fa fa-google-plus-square" aria-hidden="true"></i></button>
+                                    <button><i class="fa fa-comments" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>{% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

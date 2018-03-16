@@ -1,0 +1,25 @@
+{% extends "layout/base.html" %}
+{% block breadcrumb %}
+    <li><a href="/">Home</a></li>
+    <li>
+        <span class="show-for-sr">Current: </span> Import
+    </li>
+{% endblock %}
+{% load i18n %}
+{% block title %}Import{% endblock %}
+{% block description %}Import{% endblock %}
+{% block content_header %}Import{% endblock %}
+{% block content %}
+    <div class="neat-article-container">
+        <div class="row neat-article-content">
+            <div class="small-10 large-8 columns" id="sticky1">
+                <div class="article-content">
+                    <div id="app">
+                        <import></import>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% load custom_tags %}
+<div class="grid-item neat-article-container cell">
+    <h4 class="container-name"><i class="fa fa-hashtag"></i> {{ category.name }}</h4>
+    <div class="row columns grid-x small-up-2 medium-up-3">{% for post in category.posts %}
+        <div class="first-article feature-post cell">
+            <div class="neat-article-image">
+                <a href="{{ post.slug }}"
+                   data-tooltip
+                   aria-haspopup="true"
+                   data-disable-hover="false"
+                   tabindex="1"
+                   title="{{ post.title }}"
+                   data-position="top"
+                   data-alignment="center">
+                    <img class="article-image" src="{% get_image_safe post.image "237x237" %}" alt="{{ post.title }}">
+                </a>
+            </div>
+            <div class="neat-article-title">
+                <h3 class="article-title">
+                    <a href="{{ post.slug }}">{{ post.name }}</a>
+                </h3>
+            </div>
+        </div>{% endfor %}
+    </div>
+</div>
+
+{#<div class="grid-item neat-article-container cell">#}
+{#    <h4 class="container-name"><i class="fa fa-hashtag"></i> {{ category.name }}</h4>#}
+{#    <div class="row large-8 columns">{% for post in category.posts %}{% if forloop.first %}#}
+{#        <div class="first-article child-article">#}
+{#            <div class="neat-article-image">#}
+{#                <img class="article-image" src="{% get_image_safe post.image "237x237" %}" alt="{{ post.title }}">#}
+{#            </div>#}
+{#            <div class="neat-article-gradient">#}
+{#            </div>#}
+{#            <div class="neat-article-title">#}
+{#                <h3>#}
+{#                    <a class="article-title" href="{{ post.slug }}">{{ post.title }}</a>#}
+{#                </h3>#}
+{#            </div>#}
+{#        </div>{% else %}#}
+{#        <div class="child-article">#}
+{#            <div class="neat-article-title">#}
+{#                <h3 class="article-title">#}
+{#                    <a href="{{ post.slug }}">{{ post.name }}</a>#}
+{#                </h3>#}
+{#            </div>#}
+{#        </div>{% endif %}{% endfor %}#}
+{#    </div>#}
+{#</div>#}

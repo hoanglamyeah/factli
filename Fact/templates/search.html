@@ -1,0 +1,42 @@
+{% extends "layout/base.html" %}{% load custom_tags %}
+{% block breadcrumb %}
+    <li><a href="/">Home</a></li>
+    <li>
+        <span class="show-for-sr">Current: </span> Search: {{ keyword }}
+    </li>
+{% endblock %}
+{% load i18n %}
+{% block title %}Search: {{ keyword }}{% endblock %}
+{% block description %}Search: {{ keyword }}{% endblock %}
+{% block content_header %}Search: {{ keyword }}{% endblock %}
+{% block content %}
+    <div class="grid-x grid-padding-x small-up-1">
+        <div class="cell">
+            <form action="." method="get">
+                <div class="input-group">
+
+                    <input class="input-group-field" type="text" name="query">
+                    <div class="input-group-button">
+                        <input type="submit" class="button" value="Submit">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="category grid-x grid-padding-x small-up-2 medium-up-4">{% for object in objects %}
+        <div class="cell">
+            <div class="product-card">
+                <div class="product-card-thumbnail">
+                    <a href="#"><img src="{% get_image_safe object.image "136x136" %}" alt="{{ object.title }}"/></a>
+                </div>
+                <h2 class="product-card-title"><a href="/{{ object.slug }}">{{ object.name }}</a></h2>
+                <span class="product-card-desc">{{ object.facts.count }} facts</span>
+            </div>
+        </div>{% endfor %}
+    </div>
+    <div class="grid-x grid-padding-x small-up-1">
+        <div class="cell">
+            {% include "layout/pagination.html" with pages=objects %}
+        </div>
+    </div>
+{% endblock %}

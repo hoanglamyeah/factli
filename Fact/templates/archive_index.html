@@ -1,0 +1,29 @@
+{% extends "layout/base.html" %}{% load custom_tags %}
+{% block breadcrumb %}
+    <li><a href="/">Home</a></li>
+    <li>
+        <span class="show-for-sr">Current: </span> Category
+    </li>
+{% endblock %}
+{% load i18n %}
+{% block title %}Category{% endblock %}
+{% block description %}Category{% endblock %}
+{% block content_header %}Category{% endblock %}
+{% block content %}
+    <div class="category grid-x grid-padding-x small-up-2 medium-up-4">{% for category in categories %}
+        <div class="cell">
+            <div class="product-card">
+                <div class="product-card-thumbnail">
+                    <a href="#"><img src="{% get_image_safe category.icon "136x136" %}"/></a>
+                </div>
+                <h2 class="product-card-title"><a href="/category/{{ category.slug }}">{{ category.name }}</a></h2>
+                <span class="product-card-desc">{{ category.count_object }} posts</span>
+            </div>
+        </div>{% endfor %}
+    </div>
+    <div class="grid-x grid-padding-x small-up-1">
+        <div class="cell">
+            {% include "layout/pagination.html" with pages=categories %}
+        </div>
+    </div>
+{% endblock %}

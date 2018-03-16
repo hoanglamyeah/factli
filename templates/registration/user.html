@@ -1,0 +1,53 @@
+{% extends "layout/base.html" %}{% load custom_tags %}
+{% block breadcrumb %}
+    <li><a href="/">Home</a></li>
+    <li><a href="/member">Member</a></li>
+    <li>
+        <span class="show-for-sr">Current: </span> {{ member.username }}
+    </li>
+{% endblock %}
+{% load i18n %}
+{% block title %}{{ member.username }}{% endblock %}
+{% block description %}{{ member.username }}{% endblock %}
+{% block content_header %}{{ member.username }}{% endblock %}
+{% block content %}
+    <div class="card-profile-stats">
+        <div class="card-profile-stats-intro">{% get_member member as base %}
+            <img class="card-profile-stats-intro-pic"
+                 src="{{ base.image.thumbnail.250x250 }}" alt="profile-image"/>
+            <div class="card-profile-stats-intro-content">
+                <h3>{{ member.first_name }} {{ member.last_name }}</h3>
+                <p><small>Joined {{ member.date_joined }}</small></p>
+            </div>
+        </div>
+
+        <hr/>
+
+        <div class="card-profile-stats-container">
+            <div class="card-profile-stats-statistic">
+                <span class="stat">{% get_facts member %}</span>
+                <p>facts</p>
+            </div>
+            <div class="card-profile-stats-statistic">
+                <span class="stat">125</span>
+                <p>followers</p>
+            </div>
+            <div class="card-profile-stats-statistic">
+                <span class="stat">{% get_confirm member %}</span>
+                <p>Confirms</p>
+            </div>
+        </div>
+
+        <div class="card-profile-stats-more">
+            <p class="card-profile-stats-more-link"><a href="#"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+            </p>
+            <div class="card-profile-stats-more-content">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem libero fugit, pariatur maxime!
+                    Optio enim, deserunt quia molestiae fugiat delectus, dolore et esse nostrum, quod autem
+                    necessitatibus fugit soluta repellendus.
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

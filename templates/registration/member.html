@@ -1,0 +1,24 @@
+{% extends "layout/base.html" %}{% load custom_tags %}
+{% block breadcrumb %}
+    <li><a href="/">Home</a></li>
+    <li>
+        <span class="show-for-sr">Current: </span> Member
+    </li>
+{% endblock %}
+{% load i18n %}
+{% block title %}Member{% endblock %}
+{% block description %}Member{% endblock %}
+{% block content_header %}Member{% endblock %}
+{% block content %}
+    <div class="category grid-x grid-padding-x small-up-2 medium-up-4">{% for member in members %}
+        <div class="cell">
+            <div class="product-card">
+                <div class="product-card-thumbnail">
+                    <a href="#"><img src="{% get_image_safe member.user_base.image "136x136" %}" alt="{{ member.username }}"/></a>
+                </div>
+                <h2 class="product-card-title"><a href="{{ member.id }}">{{ member.username }}</a></h2>
+                <span class="product-card-desc">{% get_facts member %} facts</span>
+            </div>
+        </div>{% endfor %}
+    </div>
+{% endblock %}

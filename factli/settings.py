@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -27,11 +26,12 @@ DEBUG = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-ALLOWED_HOSTS = ['factaz.com']
+ALLOWED_HOSTS = ['factaz.com', '127.0.0.1']
 
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.sites',
     'versatileimagefield',
     'django.contrib.postgres',
     'rest_framework',
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'django.contrib.sitemaps',
+    'robots'
 ]
 
 # Middleware
@@ -107,7 +109,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'factaz',
-        'USER': 'comficker',
+        'USER': 'lam',
         'PASSWORD': 'hoanganhlamno1',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -153,7 +155,7 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "public/media")
 MEDIA_URL = '/media/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ACCOUNT_ACTIVATION_DAYS = 2
 
 # Email Config
@@ -172,3 +174,5 @@ LOGIN_REDIRECT_URL = '/'
 UPLOADED_FILES_USE_URL = 'images/'
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
+
+SITE_ID=1

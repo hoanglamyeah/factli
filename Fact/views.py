@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.utils.text import slugify
 from django.views.decorators.csrf import csrf_exempt
 import urllib
-from urlparse import urlparse
+from urllib.parse import urlparse
 from django.core.files import File
 from . import models
 
@@ -45,7 +45,7 @@ def fact_get(request, slug, fact_id):
                       {"object": object_data, "fact": object_data.facts()[index], "index": fact_id})
     else:
         if request.POST['submit'] == "verified":
-            if request.user.is_authenticated():
+            if request.user.is_authenticated:
                 fact = models.Fact.objects.get(pk=int(request.POST['fact_id']))
                 confirm = models.Confirm.objects.filter(fact=fact, member=request.user)
                 if confirm:
@@ -56,7 +56,7 @@ def fact_get(request, slug, fact_id):
         elif request.POST['submit'] == "comment_add":
             parent = models.Comment.objects.filter(pk=int(request.POST['parent_id'])).first()
             fact = models.Fact.objects.get(pk=int(request.POST['fact_id']))
-            if request.user.is_authenticated():
+            if request.user.is_authenticated:
                 comment = models.Comment(fact=fact, member=request.user, parent=parent,
                                          content=request.POST['comment_content'])
                 comment.save()

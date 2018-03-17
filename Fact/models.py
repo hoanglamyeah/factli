@@ -9,6 +9,8 @@ from django.db import models
 from versatileimagefield.fields import VersatileImageField, PPOIField
 from itertools import chain
 from django.db.models import Q
+from django.urls import reverse
+
 # Create your models here.
 
 
@@ -87,6 +89,8 @@ class Category(models.Model):
         self_posts = Object.objects.filter(Q(category__parent=self) | Q(category=self)).order_by('-id')
         return self_posts
 
+    def get_absolute_url(self):
+        return reverse('fact:category_show', kwargs={'slug': self.slug})
 
 class Object(models.Model):
     name = models.CharField(max_length=60, null=False, default="aaa")
@@ -112,6 +116,9 @@ class Object(models.Model):
 
     def facts(self):
         return Fact.objects.filter(object=self)
+
+    def get_absolute_url(self):
+        return reverse('fact:object_show', kwargs={'slug': self.slug})
 
 
 class Fact(models.Model):
@@ -142,7 +149,7 @@ class Comment(models.Model):
     pub_date = models.DateField(auto_now=True)
 
     def __str__(self):
-        return self.fact.object.name + self.member.user.username
+        return self.fact.object.name + self.member.username
 
 
 class Confirm(models.Model):

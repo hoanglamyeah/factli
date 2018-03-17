@@ -22,7 +22,7 @@ def verify_message(number, user):
     if int(number) == 0:
         return "Non verified"
     else:
-        if user.is_authenticated():
+        if user.is_authenticated:
             data = Confirm.objects.filter(member=user)
             if data:
                 return "You verified this"

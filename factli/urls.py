@@ -18,8 +18,10 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^member/', include('registration.backends.hmac.urls')),
-    url(r'^', include('Fact.urls', namespace='fact')),
+    url(r'^', include(('Fact.urls', 'fact'), namespace='fact')),
+    url(r'^robots\.txt$', include('robots.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

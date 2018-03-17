@@ -1,6 +1,24 @@
 from django.conf.urls import url
-
+from django.contrib.sitemaps import GenericSitemap
+from django.contrib.sitemaps.views import sitemap
+from django.urls import path
+from Fact import models
+from Fact.sitemaps import StaticViewSitemap
+from django.contrib.auth.models import User
 from . import views
+
+sitemaps = {
+    'static': StaticViewSitemap,
+}
+
+map_object = {
+    'queryset': models.Object.objects.all().order_by('-id'),
+    'date_field': 'pub_date',
+}
+
+map_category = {
+    'queryset': models.Category.objects.all().order_by('-id'),
+}
 
 urlpatterns = [
     url(r'^manager/import/$', views.import_data, name='import_data'),
@@ -16,4 +34,15 @@ urlpatterns = [
     url(r'^(?P<slug>[\w-]+)/$', views.get_object, name='object_show'),
     url(r'^(?P<slug>[\w-]+)/(?P<fact_id>[0-9]+)/$', views.fact_get, name='fact_show'),
     url(r'^category/(?P<slug>[\w-]+)/$', views.archive_detail, name='category_show'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+         name='django.contrib.sitemaps.views.sitemap'),
+    path('sitemap-object.xml', sitemap,
+         {'sitemaps': {'blog': GenericSitemap(map_object, priority=0.6)}},
+         name='sitemap_object'),
+    path('sitemap-category.xml', sitemap,
+         {'sitemaps': {'blog': GenericSitemap(map_category, priority=0.6)}},
+         name='sitemap_category'),
+    path('sitemap-category.xml', sitemap,
+         {'sitemaps': {'blog': GenericSitemap(map_category, priority=0.6)}},
+         name='sitemap_category'),
 ]

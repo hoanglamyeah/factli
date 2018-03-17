@@ -92,6 +92,7 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('fact:category_show', kwargs={'slug': self.slug})
 
+
 class Object(models.Model):
     name = models.CharField(max_length=60, null=False, default="aaa")
     title = models.CharField(max_length=160, unique=True)

@@ -201,6 +201,12 @@ def import_data(request):
                     obj.image.save(name, File(open(content[0])), save=True)
                 obj.save()
             else:
+                if not obj.image:
+                    if image_url != 'None':
+                        name = urlparse(image_url).path.split('/')[-1]
+                        content = urllib.request.urlretrieve(image_url)
+                        obj.image.save(name, File(open(content[0])), save=True)
+                    obj.save()
                 massage = "Duplicated\n"
             if body['facts']:
                 for fact in body['facts']:

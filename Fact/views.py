@@ -1,5 +1,5 @@
 import json
-
+from django.core.files.temp import NamedTemporaryFile
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import IntegrityError
@@ -197,16 +197,20 @@ def import_data(request):
                 obj.save()
                 if image_url != 'None':
                     name = urlparse(image_url).path.split('/')[-1]
-                    content = urllib.request.urlretrieve(image_url)
-                    obj.image.save(name, File(open(content[0])), save=True)
-                obj.save()
+                    img_temp = NamedTemporaryFile(delete=True)
+                    img_temp.write(urllib.request.urlopen(image_url).read())
+                    img_temp.flush()
+                    obj.image.save(name, File(img_temp), save=True)
+                    obj.save()
             else:
                 if not obj.image:
                     if image_url != 'None':
                         name = urlparse(image_url).path.split('/')[-1]
-                        content = urllib.request.urlretrieve(image_url)
-                        obj.image.save(name, File(open(content[0])), save=True)
-                    obj.save()
+                        img_temp = NamedTemporaryFile(delete=True)
+                        img_temp.write(urllib.request.urlopen(image_url).read())
+                        img_temp.flush()
+                        obj.image.save(name, File(img_temp), save=True)
+                        obj.save()
                 massage = "Duplicated\n"
             if body['facts']:
                 for fact in body['facts']:
@@ -231,3 +235,7 @@ def search(request):
     except EmptyPage:
         list_objects = paginator.page(paginator.num_pages)
     return render(request, 'search.html', {"objects": list_objects, "keyword": request.GET.get('query')})
+
+
+def test(request):
+    return HttpResponse("OK")

@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.text import slugify
 from django.views.decorators.csrf import csrf_exempt
-import urllib
+import urllib.request
 from urllib.parse import urlparse
 from django.core.files import File
 from . import models
@@ -197,7 +197,7 @@ def import_data(request):
                 obj.save()
                 if image_url != 'None':
                     name = urlparse(image_url).path.split('/')[-1]
-                    content = urllib.urlretrieve(image_url)
+                    content = urllib.request.urlretrieve(image_url)
                     obj.image.save(name, File(open(content[0])), save=True)
                 obj.save()
             else:

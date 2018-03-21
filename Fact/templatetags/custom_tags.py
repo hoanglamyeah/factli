@@ -39,9 +39,9 @@ def verify_check(number):
 
 @register.simple_tag
 def get_image_safe(image, size):
-    if image:
+    try:
         return image.crop[size]
-    else:
+    except OSError:
         return "/static/img/thumbnail_" + size + ".png"
 
 

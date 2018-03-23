@@ -7,7 +7,6 @@ from django.db.models import Q
 
 class DecadeBornListFilter(admin.SimpleListFilter):
     title = _('decade born')
-
     parameter_name = 'decade'
 
     def lookups(self, request, model_admin):
@@ -25,7 +24,7 @@ class DecadeBornListFilter(admin.SimpleListFilter):
 
 class ObjectAdmin(admin.ModelAdmin):
     date_hierarchy = 'pub_date'
-    list_filter = (DecadeBornListFilter,)
+    list_filter = (DecadeBornListFilter, 'category')
     search_fields = ['name']
 
 

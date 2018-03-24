@@ -21,6 +21,7 @@ map_category = {
 }
 
 urlpatterns = [
+    url(r'^test/$', views.test, name='page_test'),
     url(r'^manager/import/$', views.import_data, name='import_data'),
     url(r'^$', views.index, name='index'),
     url(r'^search/$', views.search, name='search'),

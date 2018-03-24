@@ -17,7 +17,7 @@ from . import models
 
 
 def index(request):
-    categories = models.Category.objects.all()
+    # categories = models.Category.objects.all()
     return render(request, 'index.html', {})
 
 

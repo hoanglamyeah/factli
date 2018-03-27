@@ -4,8 +4,34 @@
 {% block description %}FactAZ.com{% endblock %}
 {% block content_header %}Welcome to FactAZ.com{% endblock %}
 {% block content %}
-    <div class="background-pattern grid grid-x grid-padding-x small-up-1 medium-up-3">{% for category in categories %}
+    <div class="background-pattern grid grid-x grid-padding-x small-up-1 medium-up-3">
+        <div class="grid-item cell">
+            <div class="">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-7014744652532083"
+                     data-ad-slot="2930178966"
+                     data-ad-format="auto">
+                </ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>{% for category in categories %}
         {% include "layout/post_list.html" with category=category %}{% endfor %}
+    </div>
+    <div class="google-ads text-center">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-7014744652532083"
+             data-ad-slot="2930178966"
+             data-ad-format="auto">
+        </ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
     <h2 class="text-center">Facts by category</h2>
     <div class="background-pattern grid grid-x grid-padding-x small-up-1 medium-up-3">{% for category in categories %}

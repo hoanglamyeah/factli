@@ -10,29 +10,31 @@
 {% block description %}Login{% endblock %}
 {% block content_header %}Login{% endblock %}
 {% block content %}
-    <section class="login-box">
-        <div class="grid-x grid-padding-x small-up-1 medium-up-2 collapse expanded">
-            <div class="cell">
-                <form method="post" action="." class="login-box-form-section">
-                    <fieldset>
-                        {% csrf_token %}
-                        <input type="text" class="login-box-input" id="id_username" aria-describedby="emailHelp"
-                               placeholder="Enter email" name="username">
-                        <input type="password" class="login-box-input" id="id_password" placeholder="Password"
-                               name="password">
-                    </fieldset>
-                    <input type="submit" class="login-box-submit-button" value="{% trans 'Sign me in' %}"/>
-                    <input type="hidden" name="next" value="{{ next }}"/>
-                </form>
-            </div>
-            <div class="cell login-box-social-section">
-                <div class="login-box-social-section-inner">
-                    <span class="login-box-social-headline">Sign in with<br/>your social network</span>
-                    <a class="login-box-social-button-facebook">Log in with facebook</a>
-                    <a class="login-box-social-button-twitter">Log in with Twitter</a>
-                    <a class="login-box-social-button-google">Log in with Google+</a>
+    <div class="wrapper">
+        <section class="login-box">
+            <div class="grid-x grid-padding-x small-up-1 medium-up-2 collapse expanded">
+                <div class="cell">
+                    <form method="post" action="." class="login-box-form-section">
+                        <fieldset>
+                            {% csrf_token %}
+                            <input type="text" class="login-box-input" id="id_username" aria-describedby="emailHelp"
+                                   placeholder="Enter email" name="username">
+                            <input type="password" class="login-box-input" id="id_password" placeholder="Password"
+                                   name="password">
+                        </fieldset>
+                        <input type="submit" class="login-box-submit-button" value="{% trans 'Sign me in' %}"/>
+                        <input type="hidden" name="next" value="{{ next }}"/>
+                    </form>
+                </div>
+                <div class="cell login-box-social-section">
+                    <div class="login-box-social-section-inner">
+                        <span class="login-box-social-headline">Sign in with<br/>your social network</span>
+                        <a class="login-box-social-button-facebook">Log in with facebook</a>
+                        <a class="login-box-social-button-twitter">Log in with Twitter</a>
+                        <a class="login-box-social-button-google">Log in with Google+</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 {% endblock %}

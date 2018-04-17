@@ -11,107 +11,102 @@
 {% block description %}{{ object.title }}{% endblock %}
 {% block content_header %}{{ object.title }}{% endblock %}
 {% block content %}
-    <div class="sub-fact">
-        <div class="grid-x grid-padding-x small-up-1 medium-up-2 fact-body">
-            <div class="cell">
-                <div class="fact-detail">
-                    <p>#{{ object.name }} Fact</p>
-                    <p class="content">{{ fact.content }}</p>
-                    <div class="action text-center">
-                        <form action="." method="post">
-                            {% csrf_token %}
-                            <input type="hidden" value="{{ fact.id }}" name="fact_id">
-                            <button data-tooltip aria-haspopup="true" class="has-tip"
-                                    data-disable-hover="false" tabindex="1"
-                                    title="{% verify_message fact.confirm request.user %}"
-                                    data-position="top"
-                                    data-alignment="center"
-                                    name="submit"
-                                    value="verified">
-                                <i class="fa fa-check-circle {% verify_check fact.confirm %}"></i>
-                            </button>
-                        </form>
+    <div class="wrapper">
+        <div class="sub-fact">
+            <div class="grid-x grid-padding-x small-up-1 medium-up-2 fact-body">
+                <div class="cell">
+                    <div class="fact-detail">
+                        <p>#{{ object.name }} Fact</p>
+                        <p class="content">{{ fact.content }}</p>
                     </div>
-                    <p class="text-center signature">#FACTAZ</p>
-                </div>
-                <div class="fact-footer">
-                    <button><i class="fa fa-facebook" aria-hidden="true"></i></button>
-                    <button><i class="fa fa-twitter" aria-hidden="true"></i></button>
-                    <button><i class="fa fa-reddit" aria-hidden="true"></i></button>
-                    <button><i class="fa fa-google-plus-square" aria-hidden="true"></i></button>
-                    <button><i class="fa fa-external-link"></i></button>
-                    <button><i class="fa fa-download" aria-hidden="true"></i></button>
-                </div>
-            </div>
-            <div class="cell response">
-                <div class="fact-response">
-                    <div class="comment-section-container">
-                        <h4>Response</h4>{% for comment in fact.comments %}
-                        <div class="comment">
-                            <div class="comment-section-author">{% if comment.member.user.username is not None %}
-                                <img src="{{ comment.member.image.crop.50x50 }}"
-                                     alt="{{ comment.member.user.username }}">
-                                <div class="comment-section-name">
-                                    <h5>
-                                        <span>{{ comment.member.user.username }}</span>
-                                    </h5>
-                                    <p class="meta">{{ comment.pub_date }}</p>
-                                </div>{% else %}
-                                <img src="{% static 'img/person.png' %}"
-                                     alt="{{ comment.guess.name }}">
-                                <div class="comment-section-name">
-                                    <h5>
-                                        <span>{{ comment.guess.name }}</span>
-                                    </h5>
-                                    <p class="meta">{{ comment.pub_date }}</p>
-                                </div>{% endif %}
-                            </div>
-                            <div class="comment-section-text">
-                                <p>{{ comment.content }}</p>
-                            </div>
-                        </div>{% endfor %}
-                    </div>
-                    <form class="comment-section-form" action="." method="post">
-                        <div class="comment-section-box">
-                            <div class="row">
-                                <div class="small-12 column">
+                    <div class="fact-footer">
+                        <div class="small-12">
+                            <div class="action text-center">
+                                <form action="." method="post">
                                     {% csrf_token %}
-                                    <input type="hidden" name="fact_id" value="{{ fact.id }}">
-                                    <input type="hidden" name="parent_id" value="0">{% if not user.is_authenticated %}
-                                    <label>
-                                        <input type="text" placeholder="Name" name="guest_name">
-                                    </label>
-                                    <label>
-                                        <input type="text" placeholder="Email" name="guest_email">
-                                    </label>{% else %}
-                                    <div>Welcome {{ user.username }}</div>
-                                {% endif %}
-                                    <label>
+                                    <input type="hidden" value="{{ fact.id }}" name="fact_id">
+                                    <button data-tooltip aria-haspopup="true" class="has-tip"
+                                            data-disable-hover="false" tabindex="1"
+                                            title="{% verify_message fact.confirm request.user %}"
+                                            data-position="top"
+                                            data-alignment="center"
+                                            name="submit"
+                                            value="verified">
+                                        <i class="fa fa-check-circle {% verify_check fact.confirm %}"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <p class="text-center signature">#FACTAZ</p>
+                        </div>
+                        <div class="small-12">
+                            <button><i class="fa fa-facebook" aria-hidden="true"></i></button>
+                            <button><i class="fa fa-twitter" aria-hidden="true"></i></button>
+                            <button><i class="fa fa-reddit" aria-hidden="true"></i></button>
+                            <button><i class="fa fa-google-plus-square" aria-hidden="true"></i></button>
+                            <button><i class="fa fa-external-link"></i></button>
+                            <button><i class="fa fa-download" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cell response">
+                    <div class="fact-response">
+                        <div class="comment-section-container">
+                            <h4>Response</h4>{% for comment in fact.comments %}
+                            <div class="comment">
+                                <div class="comment-section-author">{% if comment.member.user.username is not None %}
+                                    <img src="{{ comment.member.image.crop.50x50 }}"
+                                         alt="{{ comment.member.user.username }}">
+                                    <div class="comment-section-name">
+                                        <h5>
+                                            <span>{{ comment.member.user.username }}</span>
+                                        </h5>
+                                        <p class="meta">{{ comment.pub_date }}</p>
+                                    </div>{% else %}
+                                    <img src="{% static 'img/person.png' %}"
+                                         alt="{{ comment.guess.name }}">
+                                    <div class="comment-section-name">
+                                        <h5>
+                                            <span>{{ comment.guess.name }}</span>
+                                        </h5>
+                                        <p class="meta">{{ comment.pub_date }}</p>
+                                    </div>{% endif %}
+                                </div>
+                                <div class="comment-section-text">
+                                    <p>{{ comment.content }}</p>
+                                </div>
+                            </div>{% endfor %}
+                        </div>
+                        <form class="comment-section-form" action="." method="post">
+                            <div class="comment-section-box">
+                                <div class="row">
+                                    <div class="small-12 column">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="fact_id" value="{{ fact.id }}">
+                                        <input type="hidden" name="parent_id" value="0">
+                                        {% if not user.is_authenticated %}
+                                            <label>
+                                                <input type="text" placeholder="Name" name="guest_name">
+                                            </label>
+                                            <label>
+                                                <input type="text" placeholder="Email" name="guest_email">
+                                            </label>{% else %}
+                                            <div>Welcome {{ user.username }}</div>
+                                        {% endif %}
+                                        <label>
                                             <textarea name="comment_content" rows="3" type="text"
                                                       placeholder="Your awesome comment!"></textarea>
-                                    </label>
-                                    <button class="button expanded" name="submit" value="comment_add">Submit
-                                    </button>
+                                        </label>
+                                        <button class="button expanded" name="submit" value="comment_add">Submit
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="google-ads text-center">
-            <p>
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-7014744652532083"
-                     data-ad-slot="2930178966"
-                     data-ad-format="auto">
-                </ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </p>
+            <div class="google-ads text-center">
+            </div>
         </div>
     </div>
 {% endblock %}

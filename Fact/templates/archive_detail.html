@@ -11,20 +11,30 @@
 {% block description %}Category: {{ archive.name }}{% endblock %}
 {% block content_header %}Category: {{ archive.name }}{% endblock %}
 {% block content %}
-    <div class="category grid-x grid-padding-x small-up-2 medium-up-4">{% for object in objects %}
-        <div class="cell">
-            <div class="product-card">
-                <div class="product-card-thumbnail">
-                    <a href="#"><img src="{% get_image_safe object.image "136x136" %}" alt="{{ object.title }}"/></a>
-                </div>
-                <h2 class="product-card-title"><a href="/{{ object.slug }}">{{ object.name }}</a></h2>
-                <span class="product-card-desc">{{ object.facts.count }} facts</span>
+    <div class="wrapper">
+        <div class="small-12 columns">
+            <div class="neat-article-title">
+                <h1 class="article-title text-center">
+                    Category: {{ archive.name }}
+                </h1>
             </div>
-        </div>{% endfor %}
-    </div>
-    <div class="grid-x grid-padding-x small-up-1">
-        <div class="cell">
-            {% include "layout/pagination.html" with pages=objects %}
+        </div>
+        <div class="category grid-x grid-padding-x small-up-2 medium-up-4">{% for object in objects %}
+            <div class="cell">
+                <div class="product-card">
+                    <div class="product-card-thumbnail">
+                        <a href="#"><img src="{% get_image_safe object.image "136x136" %}"
+                                         alt="{{ object.title }}"/></a>
+                    </div>
+                    <h2 class="product-card-title"><a href="/{{ object.slug }}">{{ object.name }}</a></h2>
+                    <span class="product-card-desc">{{ object.facts.count }} facts</span>
+                </div>
+            </div>{% endfor %}
+        </div>
+        <div class="grid-x grid-padding-x small-up-1">
+            <div class="cell">
+                {% include "layout/pagination.html" with pages=objects %}
+            </div>
         </div>
     </div>
 {% endblock %}

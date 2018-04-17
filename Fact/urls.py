@@ -4,7 +4,6 @@ from django.contrib.sitemaps.views import sitemap
 from django.urls import path
 from Fact import models
 from Fact.sitemaps import StaticViewSitemap
-from django.contrib.auth.models import User
 from . import views
 
 sitemaps = {

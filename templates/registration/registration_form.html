@@ -10,41 +10,43 @@
 {% block description %}Register{% endblock %}
 {% block content_header %}Register{% endblock %}
 {% block content %}
-    <div class="login-box">
-        <div class="grid-x grid-padding-x small-up-1 medium-up-2 collapse expanded">
-            <div class="cell">
-                <form class="login-box-form-section" method="post" action=".">
-                    {% csrf_token %}
-                    <fieldset>
-                        <label for="exampleInputEmail1">Username</label>
-                        <input type="text" class="login-box-input" id="id_username" aria-describedby="emailHelp"
-                               placeholder="Enter username" name="username">{% for error in form.username.errors %}
-                        <div class="form-control-feedback">{{ error }}</div>{% endfor %}
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="login-box-input" id="id_email" aria-describedby="emailHelp"
-                               placeholder="Enter email" name="email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.
-                        </small>{% for error in form.email.errors %}
-                        <div class="form-control-feedback">{{ error }}</div>{% endfor %}
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="login-box-input" id="id_password1" placeholder="Password"
-                               name="password1">{% for error in form.password1.errors %}
-                        <div class="form-control-feedback">{{ error }}</div>{% endfor %}
-                        <label for="exampleInputPassword1">Password confirmation</label>
-                        <input type="password" class="login-box-input" id="id_password2" placeholder="Password"
-                               name="password2">{% for error in form.password2.errors %}
-                        <div class="form-control-feedback">{{ error }}</div>{% endfor %}
-                    </fieldset>
-                    <input type="submit" class="login-box-submit-button" value="{% trans 'Sign me up' %}"/>
-                </form>
-            </div>
-            <div class="cell login-box-social-section">
-                <div class="login-box-social-section-inner">
-                    <span class="login-box-social-headline">Sign in with<br/>your social network</span>
-                    <a class="login-box-social-button-facebook">Log in with facebook</a>
-                    <a class="login-box-social-button-twitter">Log in with Twitter</a>
-                    <a class="login-box-social-button-google">Log in with Google+</a>
+    <div class="wrapper">
+        <div class="login-box">
+            <div class="grid-x grid-padding-x small-up-1 medium-up-2 collapse expanded">
+                <div class="cell">
+                    <form class="login-box-form-section" method="post" action=".">
+                        {% csrf_token %}
+                        <fieldset>
+                            <label for="exampleInputEmail1">Username</label>
+                            <input type="text" class="login-box-input" id="id_username" aria-describedby="emailHelp"
+                                   placeholder="Enter username" name="username">{% for error in form.username.errors %}
+                            <div class="form-control-feedback">{{ error }}</div>{% endfor %}
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="login-box-input" id="id_email" aria-describedby="emailHelp"
+                                   placeholder="Enter email" name="email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.
+                            </small>{% for error in form.email.errors %}
+                            <div class="form-control-feedback">{{ error }}</div>{% endfor %}
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="login-box-input" id="id_password1" placeholder="Password"
+                                   name="password1">{% for error in form.password1.errors %}
+                            <div class="form-control-feedback">{{ error }}</div>{% endfor %}
+                            <label for="exampleInputPassword1">Password confirmation</label>
+                            <input type="password" class="login-box-input" id="id_password2" placeholder="Password"
+                                   name="password2">{% for error in form.password2.errors %}
+                            <div class="form-control-feedback">{{ error }}</div>{% endfor %}
+                        </fieldset>
+                        <input type="submit" class="login-box-submit-button" value="{% trans 'Sign me up' %}"/>
+                    </form>
+                </div>
+                <div class="cell login-box-social-section">
+                    <div class="login-box-social-section-inner">
+                        <span class="login-box-social-headline">Sign in with<br/>your social network</span>
+                        <a class="login-box-social-button-facebook">Log in with facebook</a>
+                        <a class="login-box-social-button-twitter">Log in with Twitter</a>
+                        <a class="login-box-social-button-google">Log in with Google+</a>
+                    </div>
                 </div>
             </div>
         </div>

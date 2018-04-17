@@ -10,85 +10,74 @@
 {% block description %}{{ object.title }}{% endblock %}
 {% block content_header %}{{ object.title }}{% endblock %}
 {% block content %}
-    <div class="neat-article-container">
-        <div class="row neat-article-content">
-            <div class="small-10 large-8 columns" id="sticky1">
+    <div class="wrapper">
+        <div class="row neat-article-container">
+            <div class="small-12 columns">
+                <div class="neat-article-title">
+                    <h1 class="article-title">
+                        {{ object.name }} facts
+                    </h1>
+                </div>
+            </div>
+            <div class="small-12 large-8 columns">
                 <div class="article-content">
-                    <div class="grid-x grid-padding-x small-up-1">
-                        <div class="cell large-12 text-center filter">
-                            <a class="button small secondary" href="?filter=all">ALL</a>
-                            <a class="button small" href="?filter=system">FACTAZ</a>
-                            <a class="button small" href="?filter=member">MEMBER</a>
-                        </div>
-                        <p class="cell">{{ object.description }}</p>
-                    </div>
-                    <div class="google-ads text-center">
-                        <p>
-                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                            <ins class="adsbygoogle"
-                                 style="display:block"
-                                 data-ad-client="ca-pub-7014744652532083"
-                                 data-ad-slot="2930178966"
-                                 data-ad-format="auto">
-                            </ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                        </p>
-                    </div>
-                    <div class="grid grid-x grid-padding-x small-up-1 medium-up-3">
-                        <div class="grid-item cell">
-                            <div class="callout">
-                                <div class="fact-body">
-                                    <img class="article-image" src="{% get_image_safe object.image "222x222" %}"
-                                         alt="{{ object.title }}">
+                    <div class="fact-parent">
+                        <div class="fact-child">
+                            <div class="grid-x action-nav">
+                                <div class="column active text-center">
+                                    <a href="?filter=system">FactAz</a>
+                                </div>
+                                <div class="column text-center">
+                                    <a href="?filter=member">Member</a>
                                 </div>
                             </div>
                         </div>{% for fact in facts %}
-                        <div class="grid-item cell">
+                        <div class="fact-child">
                             <div class="callout">
-                                <div class="fact-head grid-x">
-                                    <div class="fact-title row">
-                                        <h3>
-                                            <a href="/{{ object.slug }}/{{ forloop.counter }}">#Fact {{ forloop.counter }}</a>
-                                        </h3>
-                                    </div>
-                                    <div class="verify row">
-                                        <button data-tooltip aria-haspopup="true" class="has-tip"
-                                                data-disable-hover="false" tabindex="1"
-                                                title="{% verify_message fact.confirm request.user %}"
-                                                data-position="top"
-                                                data-alignment="center">
+                                <div class="fact-body">
+                                    {{ fact.content }}
+                                </div>
+                                <div class="fact-footer text-right">
+                                    <div class="text-center">
+                                        <a href="/{{ object.slug }}/{{ forloop.counter }}">
+                                            <i class="fa fa-comments"></i>
+                                        </a>
+                                        <a href="/{{ object.slug }}/{{ forloop.counter }}">
                                             <i class="fa fa-check-circle {% verify_check fact.confirm %}"
                                                aria-hidden="true"></i>
-                                        </button>
+                                        </a>
                                     </div>
-                                </div>
-                                <div class="fact-body">{{ fact.content }}</div>
-                                <div class="fact-footer">
-                                    <button><i class="fa fa-facebook" aria-hidden="true"></i></button>
-                                    <button><i class="fa fa-twitter" aria-hidden="true"></i></button>
-                                    <button><i class="fa fa-reddit" aria-hidden="true"></i></button>
-                                    <button><i class="fa fa-google-plus-square" aria-hidden="true"></i></button>
-                                    <button><i class="fa fa-comments" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </div>{% endfor %}
                     </div>
+                    <div class="fact-form">
+                        <div class="input-group">
+                            <input class="input-group-field" type="text">
+                            <div class="input-group-button">
+                                <button class="button">
+                                    <i class="fa fa-bullhorn"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="google-ads text-center">
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-7014744652532083"
-                 data-ad-slot="2930178966"
-                 data-ad-format="auto">
-            </ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+            <div class="small-12 large-4 columns sidebar">
+                <div class="row widget">
+                    <div class="column meta"><span>{{ facts.count }} facts</span></div>
+                </div>
+                <div class="widget">
+                    <h4>{{ object.name }} information</h4>
+                    <p>{{ object.description }}</p>
+                    <img class="article-image" src="{% get_image_safe object.image "222x222" %}"
+                         alt="{{ object.title }}">
+                </div>
+                <div class="widget">
+                    <img src="//lh5.ggpht.com/CztHBMfmRKhSv-_up3GCkK5R5M0TCm1czCVkVBwB0urvaHUVCEh6YtpS7DY3mcZuwC2SzX9A3w=w338"
+                         height="auto" alt="">
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

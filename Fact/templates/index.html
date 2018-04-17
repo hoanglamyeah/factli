@@ -8,31 +8,19 @@
         <div class="bg-custom">
             <div class="large-wrapper neat-article-container">
                 <div class="background-pattern grid grid-x grid-padding-x small-up-2 medium-up-3 large-up-4">
-                    {% for category in categories %}{% include "layout/post_list.html" with category=category %}{% endfor %}
+                    {% for category in categories %}
+                        {% include "layout/post_list.html" with category=category %}{% endfor %}
                 </div>
             </div>
         </div>
         <div class="middle text-center">
             <div class="small-12">
-                <a class="rounded" href="#"><img src="https://picsum.photos/50/50" alt=""></a>
-                <a class="rounded" href="#"><img src="https://picsum.photos/50/50" alt=""></a>
-                <a class="rounded" href="#"><img src="https://picsum.photos/50/50" alt=""></a>
-                <a class="rounded" href="#"><img src="https://picsum.photos/50/50" alt=""></a>
-                <a class="rounded" href="#"><img src="https://picsum.photos/50/50" alt=""></a>
-                <a class="rounded" href="#"><img src="https://picsum.photos/50/50" alt=""></a>
-                <a class="rounded" href="#"><img src="https://picsum.photos/50/50" alt=""></a>
-                <a class="rounded" href="#"><img src="https://picsum.photos/50/50" alt=""></a>
+{#                <a class="rounded" href="#"><img src="https://picsum.photos/50/50" alt=""></a>#}
             </div>
             <div class="small-12">
                 <nav class="siteLinks rsp-gte-tablet">
-                    <a target="_blank" href="https://about.ask.fm?lang=en">About ASKfm</a>
-                    <a target="_blank" href="https://safety.ask.fm?lang=en">Safety center</a>
-                    <a target="_blank" href="https://support.ask.fm/">Help</a>
-                    <a target="_blank" href="https://safety.ask.fm/community-guidelines/">Community Guidelines</a>
-                    <a target="_blank" href="https://about.ask.fm/terms/?lang=en">Terms of use</a>
-                    <a target="_blank" href="https://about.ask.fm/privacy-policy/?lang=en">Privacy policy</a>
-                    <a target="_blank" href="https://about.ask.fm/cookie-policy/?lang=en">Cookies policy</a>
-                    <a target="_blank" href="https://about.ask.fm/advertising/?lang=en">Advertising</a>
+                    <li><a href="/term">Terms & Conditions</a></li>
+                    <li><a href="/sitemap.xml">Sitemap</a></li>
                 </nav>
             </div>
         </div>

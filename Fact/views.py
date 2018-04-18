@@ -18,7 +18,7 @@ from . import models
 
 def index(request):
     # categories = models.Category.objects.all()
-    objs = models.Object.objects.all().order_by('-id')[:8]
+    objs = models.Object.objects.all().order_by('-id')[:12]
     return render(request, 'index.html', {'objs': objs})
 
 

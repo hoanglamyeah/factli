@@ -3,11 +3,11 @@
     <div class="callout">
         <div class="fact-heat">
             <h3 class="fact-title">
-                <a href="/{{ category.posts.0.slug }}">{{ category.posts.0.name }} Facts</a>
+                <a href="/{{ object.slug }}">{{ object.name }} Facts</a>
             </h3>
         </div>
         <div class="fact-body">
-            {{ category.posts.0.facts.0.content }}
+            {{ object.fact.content }}
         </div>
     </div>
 </div>

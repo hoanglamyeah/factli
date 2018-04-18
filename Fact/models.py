@@ -118,6 +118,9 @@ class Object(models.Model):
     def facts(self):
         return Fact.objects.filter(object=self)
 
+    def fact(self):
+        return Fact.objects.filter(object=self).first()
+
     def get_absolute_url(self):
         return reverse('fact:object_show', kwargs={'slug': self.slug})
 

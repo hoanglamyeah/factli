@@ -8,8 +8,8 @@
         <div class="bg-custom">
             <div class="large-wrapper neat-article-container">
                 <div class="background-pattern grid grid-x grid-padding-x small-up-2 medium-up-3 large-up-4">
-                    {% for category in categories %}
-                        {% include "layout/post_list.html" with category=category %}{% endfor %}
+                    {% for obj in objs %}
+                        {% include "layout/post_list.html" with object=obj %}{% endfor %}
                 </div>
             </div>
         </div>

@@ -18,7 +18,8 @@ from . import models
 
 def index(request):
     # categories = models.Category.objects.all()
-    return render(request, 'index.html', {})
+    objs = models.Object.objects.all().order_by('-id')[:8]
+    return render(request, 'index.html', {'objs': objs})
 
 
 def fact_post(request):
